@@ -1,0 +1,32 @@
+name: 'AWS Elastic Beanstalk cli deploy'
+
+author: ThangTran
+
+description: 'Provide eb cli deploy'
+
+branding:
+  icon: 'layers'  
+  color: 'white'
+
+inputs:
+  platform:
+    description: 'Beanstalk platform. Ex: Docker, PHP,..'
+    required: true
+  app_name:
+    description: 'Application Name'
+    required: true
+  region:
+    description: 'Region of beanstalk'
+    required: true
+  env_name:
+    description: 'Enviroment Name'
+    required: true
+  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.platform }}
+    - ${{ inputs.app_name }}
+    - ${{ inputs.region }}
+    - ${{ inputs.env_name }}
